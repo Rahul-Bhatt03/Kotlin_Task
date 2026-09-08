@@ -1,5 +1,4 @@
 package com.example.somcustomerbooking.navigation
-package com.example.sombooking.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
