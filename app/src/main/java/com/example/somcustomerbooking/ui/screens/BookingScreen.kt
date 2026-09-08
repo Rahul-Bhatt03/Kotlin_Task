@@ -75,6 +75,7 @@ fun BookingScreen(
             BookingForm(
                 uiState = uiState,
                 onNameChanged = viewModel::onNameChanged,
+                onEmailChanged = viewModel::onEmailChanged,
                 onContactChanged = viewModel::onContactChanged,
                 onSubmit = viewModel::submit,
                 modifier = Modifier.padding(padding)
@@ -109,6 +110,7 @@ fun BookingScreen(
 private fun BookingForm(
     uiState: BookingUiState,
     onNameChanged: (String) -> Unit,
+    onEmailChanged: (String) -> Unit,
     onContactChanged: (String) -> Unit,
     onSubmit: () -> Unit,
     modifier: Modifier = Modifier
@@ -122,6 +124,7 @@ private fun BookingForm(
             .padding(16.dp)
     ) {
         when (val state = uiState.serviceState) {
+            is UiState.Loading -> CircularProgressIndicator(modifier = Modifier.align(Alignment.CenterHorizontally))
             is UiState.Success -> BookingSummaryCard(state.data, uiState)
             is UiState.Error -> ErrorView(message = state.message)
             else -> Unit
@@ -141,6 +144,16 @@ private fun BookingForm(
             isError = uiState.fieldErrors.containsKey("customerName"),
             supportingText = uiState.fieldErrors["customerName"]?.let { { Text(it) } },
             modifier = Modifier.fillMaxWidth()
+        )
+
+        OutlinedTextField(
+            value = uiState.customerEmail,
+            onValueChange = onEmailChanged,
+            label = { Text("Email address") },
+            singleLine = true,
+            isError = uiState.fieldErrors.containsKey("customerEmail"),
+            supportingText = uiState.fieldErrors["customerEmail"]?.let { { Text(it) } },
+            modifier = Modifier.fillMaxWidth().padding(top = 8.dp)
         )
 
         OutlinedTextField(

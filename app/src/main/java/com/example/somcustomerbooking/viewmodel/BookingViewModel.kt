@@ -32,6 +32,7 @@ data class BookingUiState(
     val slot: AvailabilitySlot? = null,
     val date: String = "",
     val customerName: String = "",
+    val customerEmail: String = "",
     val contactInfo: String = "",
     val fieldErrors: Map<String, String> = emptyMap(),
     val submission: BookingSubmissionState = BookingSubmissionState.Idle
@@ -54,6 +55,10 @@ class BookingViewModel(
         _uiState.update { it.copy(customerName = value, fieldErrors = it.fieldErrors - "customerName") }
     }
 
+    fun onEmailChanged(value: String) {
+        _uiState.update { it.copy(customerEmail = value, fieldErrors = it.fieldErrors - "customerEmail") }
+    }
+
     fun onContactChanged(value: String) {
         _uiState.update { it.copy(contactInfo = value, fieldErrors = it.fieldErrors - "contactInfo") }
     }
@@ -67,7 +72,11 @@ class BookingViewModel(
     fun submit() {
         if (_uiState.value.submission is BookingSubmissionState.Submitting) return
 
-        val errors = validate(_uiState.value.customerName, _uiState.value.contactInfo)
+        val errors = validate(
+            _uiState.value.customerName,
+            _uiState.value.customerEmail,
+            _uiState.value.contactInfo
+        )
         if (errors.isNotEmpty()) {
             _uiState.update { it.copy(fieldErrors = errors) }
             return
@@ -83,7 +92,7 @@ class BookingViewModel(
                 date = date,
                 time = slot.startTime,
                 customerName = _uiState.value.customerName.trim(),
-                customerEmail = "jane@example.com", // Temporary hardcoded email
+                customerEmail = _uiState.value.customerEmail.trim(),
                 contactInfo = _uiState.value.contactInfo.trim(),
             )
             when (val result = repository.createBooking(request)) {
@@ -107,9 +116,10 @@ class BookingViewModel(
         _uiState.update { it.copy(submission = BookingSubmissionState.Idle) }
     }
 
-    private fun validate(name: String, contact: String): Map<String, String> {
+    private fun validate(name: String, email: String, contact: String): Map<String, String> {
         val errors = mutableMapOf<String, String>()
         if (name.isBlank()) errors["customerName"] = "Name is required."
+        if (email.isBlank() || !email.contains("@")) errors["customerEmail"] = "Enter a valid email."
         if (contact.trim().length < 6) errors["contactInfo"] = "Enter a valid phone number or address."
         return errors
     }
