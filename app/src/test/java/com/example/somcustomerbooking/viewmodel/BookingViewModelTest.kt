@@ -35,6 +35,7 @@ class BookingViewModelTest {
         advanceUntilIdle()
 
         viewModel.onNameChanged("")
+        viewModel.onEmailChanged("jane@example.com")
         viewModel.onContactChanged("9800000000")
         viewModel.submit()
         advanceUntilIdle()
@@ -51,6 +52,7 @@ class BookingViewModelTest {
         advanceUntilIdle()
 
         viewModel.onNameChanged("Jane Doe")
+        viewModel.onEmailChanged("jane@example.com")
         viewModel.onContactChanged("9800000000")
         viewModel.submit()
         advanceUntilIdle()
@@ -68,6 +70,7 @@ class BookingViewModelTest {
         advanceUntilIdle()
 
         viewModel.onNameChanged("Jane Doe")
+        viewModel.onEmailChanged("jane@example.com")
         viewModel.onContactChanged("9800000000")
         viewModel.submit()
         advanceUntilIdle()
