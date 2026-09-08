@@ -11,7 +11,7 @@ data class Booking(
     val customerName: String,
     val contactInfo: String,
     val customerEmail: String,
-    val status: BookingStatus = BookingStatus.PENDING
+    val status: BookingStatus = BookingStatus.PENDING,
 )
 
 //Input required to create a booking.
@@ -21,7 +21,8 @@ data class BookingRequest(
     val date: String,
     val time: String,
     val customerName: String,
-    val contactInfo: String
+    var customerEmail: String,
+    val contactInfo: String,
 )
 
 enum class BookingStatus {

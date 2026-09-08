@@ -9,5 +9,5 @@ data class Service(
     val price: Double,
     val currency: String,
     val durationMinutes: Int,
-    val rating: Double
+    val rating: Double,
 )
