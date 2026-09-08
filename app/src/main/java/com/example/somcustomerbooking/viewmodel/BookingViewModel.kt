@@ -2,6 +2,7 @@ package com.example.somcustomerbooking.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.somcustomerbooking.data.repository.BookingRepository
 import com.example.somcustomerbooking.model.ApiResult
 import com.example.somcustomerbooking.model.AvailabilitySlot
 import com.example.somcustomerbooking.model.Booking
@@ -82,7 +83,8 @@ class BookingViewModel(
                 date = date,
                 time = slot.startTime,
                 customerName = _uiState.value.customerName.trim(),
-                contactInfo = _uiState.value.contactInfo.trim()
+                customerEmail = "jane@example.com", // Temporary hardcoded email
+                contactInfo = _uiState.value.contactInfo.trim(),
             )
             when (val result = repository.createBooking(request)) {
                 is ApiResult.Success -> _uiState.update {

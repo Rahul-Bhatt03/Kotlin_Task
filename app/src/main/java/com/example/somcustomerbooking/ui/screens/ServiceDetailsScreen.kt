@@ -146,11 +146,6 @@ private fun InfoRow(label: String, value: String) {
     }
 }
 
-/**
- * A simple 7-day picker (today + next 6 days) rather than a full calendar
- * dialog -- sufficient for this assignment's scope and avoids pulling in an
- * extra date-picker dependency.
- */
 @Composable
 private fun DatePicker(selectedDate: String, onDateSelected: (String) -> Unit) {
     val today = LocalDate.now()

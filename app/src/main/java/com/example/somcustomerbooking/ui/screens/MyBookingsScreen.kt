@@ -1,4 +1,4 @@
-package com.example.somcustomerbooking.ui.screens.bookings
+package com.example.somcustomerbooking.ui.screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -106,6 +106,7 @@ private fun StatusBadge(status: BookingStatus) {
         BookingStatus.CONFIRMED -> "Confirmed"
         BookingStatus.PENDING -> "Pending"
         BookingStatus.CANCELLED -> "Cancelled"
+        BookingStatus.COMPLETED -> "Completed"
     }
     Surface(
         color = MaterialTheme.colorScheme.primaryContainer,

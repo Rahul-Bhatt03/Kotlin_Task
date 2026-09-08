@@ -1,7 +1,5 @@
 package com.example.somcustomerbooking.navigation
 
-package com.example.sombooking.navigation
-
 import java.net.URLEncoder
 import java.nio.charset.StandardCharsets
 

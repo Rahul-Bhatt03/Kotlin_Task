@@ -1,4 +1,4 @@
-package com.example.somcustomerbooking.ui.screens.service
+package com.example.somcustomerbooking.ui.screens
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -15,6 +15,7 @@ import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -61,14 +62,13 @@ fun ServiceListScreen(
                 modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 4.dp),
                 horizontalArrangement = Arrangement.End
             ) {
-                // Simple text-link affordance rather than a full button;
                 Text(
                     text = "My Bookings",
                     modifier = Modifier
                         .padding(4.dp)
                         .clickable(onClick = onMyBookingsClick),
-                    color = androidx.compose.material3.MaterialTheme.colorScheme.primary,
-                    style = androidx.compose.material3.MaterialTheme.typography.labelLarge
+                    color = MaterialTheme.colorScheme.primary,
+                    style = MaterialTheme.typography.labelLarge
                 )
             }
 
@@ -107,10 +107,10 @@ private fun ServiceCard(service: Service, onClick: () -> Unit) {
         onClick = onClick
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
-            Text(text = service.name, style = androidx.compose.material3.MaterialTheme.typography.titleMedium)
+            Text(text = service.name, style = MaterialTheme.typography.titleMedium)
             Text(
                 text = "${service.category} • ${service.provider}",
-                style = androidx.compose.material3.MaterialTheme.typography.bodyMedium
+                style = MaterialTheme.typography.bodyMedium
             )
             Row(
                 modifier = Modifier.fillMaxWidth().padding(top = 8.dp),
@@ -121,7 +121,7 @@ private fun ServiceCard(service: Service, onClick: () -> Unit) {
                     Icon(
                         Icons.Default.Star,
                         contentDescription = null,
-                        tint = androidx.compose.material3.MaterialTheme.colorScheme.primary,
+                        tint = MaterialTheme.colorScheme.primary,
                         modifier = Modifier.padding(end = 4.dp)
                     )
                     Text(text = service.rating.toString())

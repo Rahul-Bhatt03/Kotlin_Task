@@ -7,10 +7,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.example.sombooking.ui.screens.booking.BookingScreen
-import com.example.sombooking.ui.screens.bookings.MyBookingsScreen
-import com.example.sombooking.ui.screens.service.ServiceDetailsScreen
-import com.example.sombooking.ui.screens.service.ServiceListScreen
+import com.example.somcustomerbooking.ui.screens.BookingScreen
+import com.example.somcustomerbooking.ui.screens.MyBookingsScreen
+import com.example.somcustomerbooking.ui.screens.ServiceDetailsScreen
+import com.example.somcustomerbooking.ui.screens.ServiceListScreen
 
 @Composable
 fun SomBookingNavGraph(navController: NavHostController = rememberNavController()) {

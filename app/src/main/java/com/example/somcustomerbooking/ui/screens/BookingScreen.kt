@@ -1,14 +1,17 @@
 package com.example.somcustomerbooking.ui.screens
 
-
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
@@ -28,6 +31,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.somcustomerbooking.model.Service
 import com.example.somcustomerbooking.model.UiState
 import com.example.somcustomerbooking.ui.components.ErrorView
@@ -120,7 +124,7 @@ private fun BookingForm(
         when (val state = uiState.serviceState) {
             is UiState.Success -> BookingSummaryCard(state.data, uiState)
             is UiState.Error -> ErrorView(message = state.message)
-            else -> Unit // Loading is brief; avoiding a second spinner keeps the form visible sooner.
+            else -> Unit
         }
 
         Text(
@@ -180,7 +184,7 @@ private fun BookingSummaryCard(service: Service, uiState: BookingUiState) {
 
 @Composable
 private fun SummaryRow(label: String, value: String) {
-    androidx.compose.foundation.layout.Row(
+    Row(
         modifier = Modifier.fillMaxWidth().padding(top = 6.dp),
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
@@ -217,4 +221,3 @@ private fun BookingConfirmation(bookingNumber: String, onDone: () -> Unit, modif
         }
     }
 }
-
