@@ -15,10 +15,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun LoadingView(modifier: Modifier=Modifier){
-    Column(modifier=modifier.fillMaxSize(),
+fun LoadingView(modifier: Modifier = Modifier) {
+    Column(
+        modifier = modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.Center,
     ) {
         CircularProgressIndicator()
     }
@@ -27,17 +28,17 @@ fun LoadingView(modifier: Modifier=Modifier){
 @Composable
 fun EmptyView(
     message: String,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Column(
         modifier = modifier.fillMaxSize().padding(24.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.Center,
     ) {
         Text(
             text = message,
             style = MaterialTheme.typography.bodyLarge,
-            textAlign = TextAlign.Center
+            textAlign = TextAlign.Center,
         )
     }
 }
@@ -45,22 +46,22 @@ fun EmptyView(
 @Composable
 fun ErrorView(
     message: String,
-    onRetry: (() -> Unit)? = null,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onRetry: (() -> Unit)? = null
 ) {
     Column(
         modifier = modifier.fillMaxSize().padding(24.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.Center,
     ) {
         Text(
             text = message,
             style = MaterialTheme.typography.bodyLarge,
             textAlign = TextAlign.Center,
-            color = MaterialTheme.colorScheme.error
+            color = MaterialTheme.colorScheme.error,
         )
-        if (onRetry != null) {
-            Button(onClick = onRetry, modifier = Modifier.padding(top = 16.dp)) {
+        onRetry?.let {
+            Button(onClick = it, modifier = Modifier.padding(top = 16.dp)) {
                 Text("Retry")
             }
         }
